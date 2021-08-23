@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const getQuizzes = (db) => {
-  router.get("/quizzes", (req, res) => {
+  router.get("/", (req, res) => {
     let query = `SELECT * FROM quizzes`;
     console.log(query);
     db.query(query)
@@ -34,6 +34,7 @@ const getQuiz = (db) => {
         res.status(500).json({ error: err.message });
       });
   });
+  return router;
 };
 
 const newQuiz = (db) => {
@@ -46,6 +47,7 @@ const newQuiz = (db) => {
       });
     });
   });
+  return router;
 };
 
 const editQuiz = (db) => {
@@ -58,6 +60,7 @@ const editQuiz = (db) => {
       });
     });
   });
+  return router;
 };
 
 const deleteQuiz = (db) => {
@@ -70,6 +73,7 @@ const deleteQuiz = (db) => {
       });
     });
   });
+  return router;
 };
 
 module.exports = { getQuizzes, getQuiz, newQuiz, editQuiz, deleteQuiz };
