@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
+//GETS
 const getQuizzes = (db) => {
   router.get("/", (req, res) => {
     let query = `SELECT * FROM quizzes`;
@@ -17,8 +18,14 @@ const getQuizzes = (db) => {
   return router;
 };
 
+const newQuizFormShow = (db) => {
+  router.get("/new", (req, res) => {
+    res.render(/* the page for form*/);
+  });
+};
+
 const getQuiz = (db) => {
-  router.get("/quizzes/:quiz_id", (req, res) => {
+  router.get("/:quiz_id", (req, res) => {
     let query = `
     SELECT * FROM quizzes
     JOIN users ON users.id = creator_id
@@ -37,43 +44,78 @@ const getQuiz = (db) => {
   return router;
 };
 
+//POSTS
 const newQuiz = (db) => {
-  router.post("/quizzes/new", (req, res) => {
+  router.post("/new", (req, res) => {
     let query = `INSERT INTO quizzes ...`;
     console.log(query);
-    db.query(query).then(() => {
-      res.redirect("/quizzes").catch((err) => {
+    db.query(query)
+      .then(() => {
+        res.redirect("/quizzes");
+      })
+      .catch((err) => {
         res.status(500).json({ error: err.message });
       });
-    });
   });
   return router;
 };
 
+const submitQuiz = (db) => {
+  router.post("/quizzes/:quiz_id", (req, res) => {
+    let query = `INSERT INTO user_answers ...`;
+    console.log(query);
+    db.query(query)
+      .then(() => {
+        res.redirect("/quizzes");
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+  return router;
+};
+
+//PUTS
+
+//sets quiz private/public in database
 const editQuiz = (db) => {
   router.put("/quizzes/:quiz_id/edit", (req, res) => {
     let query = `UPDATE quizzes SET ... WHERE ...`;
     console.log(query);
-    db.query(query).then(() => {
-      res.redirect("/quizzes").catch((err) => {
+    db.query(query)
+      .then(() => {
+        res.redirect("/quizzes");
+      })
+      .catch((err) => {
         res.status(500).json({ error: err.message });
       });
-    });
   });
+
   return router;
 };
 
+//DELETE
 const deleteQuiz = (db) => {
-  router.put("/quizzes/:quiz_id/delete", (req, res) => {
+  router.put("/:quiz_id/delete", (req, res) => {
     let query = `DELETE FROM quizzes WHERE quiz_id = ${req.params.quiz_id}`;
     console.log(query);
-    db.query(query).then(() => {
-      res.redirect("/quizzes").catch((err) => {
+    db.query(query)
+      .then(() => {
+        res.redirect("/quizzes");
+      })
+      .catch((err) => {
         res.status(500).json({ error: err.message });
       });
-    });
   });
   return router;
 };
 
-module.exports = { getQuizzes, getQuiz, newQuiz, editQuiz, deleteQuiz };
+module.exports = {
+  getQuizzes,
+  getQuiz,
+  newQuizFormShow,
+  newQuiz,
+  submitQuiz,
+  editQuiz,
+  deleteQuiz,
+};
