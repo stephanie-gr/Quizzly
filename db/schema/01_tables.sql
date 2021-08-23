@@ -1,0 +1,40 @@
+-- Drop and recreate Users table (Example)
+
+DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS quizzes CASCADE;
+DROP TABLE IF EXISTS questions CASCADE;
+DROP TABLE IF EXISTS user_answers CASCADE;
+
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY NOT NULL,
+  username VARCHAR(255) NOT NULL,
+  PASSWORD VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE quizzes (
+  id SERIAL PRIMARY KEY NOT NULL,
+  creator_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  title VARCHAR(255) NOT NULL,
+  url VARCHAR(255),
+  is_public BOOLEAN,
+  date_created TIMESTAMP
+);
+
+CREATE TABLE questions (
+  id SERIAL PRIMARY KEY NOT NULL,
+  quiz_id INTEGER REFERENCES quizzes(id) ON DELETE CASCADE,
+  question TEXT NOT NULL,
+  option_a TEXT NOT NULL,
+  option_b TEXT NOT NULL,
+  option_c TEXT NOT NULL,
+  option_d TEXT NOT NULL
+);
+
+CREATE TABLE user_answers (
+  id SERIAL PRIMARY KEY NOT NULL,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  date TIMESTAMP,
+  question_id INTEGER REFERENCES questions(id) ON DELETE CASCADE,
+  correct BOOLEAN
+);
