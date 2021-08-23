@@ -3,3 +3,8 @@ public/styles
 .env
 *.log
 *.sqlite3
+
+planning/.DS_Store
+views/.DS_Store
+.DS_Store
+.DS_Store?

@@ -1,0 +1,105 @@
+<html lang="en">
+  <head>
+
+     <!-- Required meta tags -->
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Take A Quiz</title>
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+    <!-- local javascript -->
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+
+    <!-- external CSS script  -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+  </head>
+
+  <body>
+
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg">
+      <a class="navbar-brand" href="#">QuizzApp</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#"><b>Create</b> your own quiz!</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Menu
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="#">Log in</a>
+              <a class="dropdown-item" href="#">Log out</a>
+              <a class="dropdown-item" href="#">Sign up</a>
+              <a class="dropdown-item" href="#">My Quizzes</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <h3>You are taking ${Quiz Title} made by ${username or user's name}</h3>
+
+    <form class="new_quiz_submission" id="new_quiz_submission" action="" accept-charset="UTF-8" method="post">
+      <input name="utf8" type="hidden" value="✓">
+      <input type="hidden" name="authenticity_token" VALUE="">
+      <input type="hidden" value="14" name="quiz_submission[quiz_id]" id="quiz_submission_quiz_id">
+      <div class="submission-question card">
+        <div class="card-header">
+          <h3 class="text-primary">Question #{QUESTION #}</h3>
+        </div>
+        <div class="card-body">
+          <p></p>
+          <p>${question text}</p>
+          <p></p>
+        <div class="submission-answer">
+          <h4 class="text-muted">Possible Answers</h4>
+          <div class="list-group">
+            <input type="radio" name="quiz_submission[answers_attributes][0][option_id]" id="quiz_submission_answers_attributes_0_option_id_1642" value="1642">
+            <label for="quiz_submission_answers_attributes_0_option_id_1642">
+              <div class="list-group-item" id="1642">
+                <p></p>
+                <p>${answer text}</p>
+                <p></p>
+              </div>
+            </label>
+            <INPUT type="radio" name="" id="" value="">
+            <LABEL for="">
+              <div class="list-group-item" id="">
+                <p></p>
+                <p>${answer text}</p>
+                <p></p>
+              </div>
+            </label>
+            <input type="radio" name="" id="" value="">
+            <label for="">
+              <div class="list-group-item" id="">
+                <p></p>
+                <p>${Answer text}</p>
+                <p></p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p></p>
+      <div class="form-group text-center">
+        <input type="submit" name="commit" value="Submit" class="btn btn-lg btn-primary" data-disable-with="Submit">
+      </div>
+    </form>
+  </body>
+</html>
+
+
