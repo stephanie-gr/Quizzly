@@ -1,0 +1,28 @@
+:root {
+  --basic-color: rgb(228, 230, 253);
+  --basic-text-color: navy;
+  --button-hover-color: rgb(181, 181, 228);
+}
+
+textarea {
+  border: none;
+  background-color: transparent;
+  resize: none;
+  outline: none;
+  width: 40vw;
+}
+
+.cognito {
+  display: none;
+}
+
+.question-and-options {
+  display: flex;
+  flex-direction: column;
+  justify-content:space-between;
+  border: 5px solid blue;
+}
+
+button:hover {
+  background-color: val(--button-hover-color);
+}

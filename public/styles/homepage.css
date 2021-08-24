@@ -1,0 +1,30 @@
+:root {
+  --basic-color: rgb(228, 230, 253);
+  --basic-text-color: navy;
+}
+
+main .container{
+  display: flex;
+  flex-direction: column;
+  margin-top: 30vh;
+  height: 100vh;
+  color: var(--basic-text-color);
+}
+
+.spotlight-public-quizzes .row .col-sm {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--basic-color);
+  border: 5px solid var(--basic-color);
+  border-radius: 10px;
+  justify-content: center;
+  margin: 5em;
+  height: 30vh;
+  font-family: 'Hind Siliguri', sans-serif;
+  color: var(--basic-text-color);
+  font-size: 20px;
+}
+
+nav {
+  color: val(--basic-text-color);
+}

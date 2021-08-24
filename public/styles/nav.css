@@ -1,0 +1,25 @@
+:root {
+  --basic-color: rgb(228, 230, 253);
+  --basic-text-color: navy;
+}
+
+
+.navbar {
+  background-color: var(--basic-color);
+  color: var(--basic-text-color);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 12vh;
+}
+
+#navbarNavDropdown {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+  color: var(--basic-text-color);
+}

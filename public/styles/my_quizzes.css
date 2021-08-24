@@ -1,0 +1,5 @@
+.list-of-users-quizzes {
+  display: flex;
+  flex-direction: column;
+  border: 5px solid slateblue;
+}
