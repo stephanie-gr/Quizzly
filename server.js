@@ -47,6 +47,11 @@ const homepageRoutes = require("./routes/homepage");
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 app.use("/api/quizzes", quizzesRoutes.getQuizzes(db));
+app.use(
+  "/api/quizzes/questions/:quiz_id",
+  quizzesRoutes.newQuestionFormShow(db)
+);
+app.use("/api/quizzes/new", quizzesRoutes.newQuizFormShow(db));
 app.use("/api/quizzes/:quiz_id", quizzesRoutes.getQuiz(db));
 app.use("/api/", homepageRoutes(db));
 // Note: mount other resources here, using the same pattern above
@@ -56,6 +61,18 @@ app.use("/api/", homepageRoutes(db));
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
   res.render("index");
+});
+
+app.get("/quizzes", (req, res) => {
+  res.render("my_quizzes");
+});
+
+app.get("/quizzes/new", (req, res) => {
+  res.render("create_quiz");
+});
+
+app.get("/quizzes/1", (req, res) => {
+  res.render("take_quiz");
 });
 
 app.listen(PORT, () => {

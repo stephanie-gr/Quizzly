@@ -31,6 +31,7 @@ const newQuizFormShow = (db) => {
   router.get("/new", (req, res) => {
     res.render(/* the page for form*/);
   });
+  return router;
 };
 
 // GOOD
