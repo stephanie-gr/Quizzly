@@ -11,44 +11,26 @@
     <!-- css stylesheets -->
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/homepage.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/my_qiozzes.css" type="text/css" />
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
 
     <!-- external CSS script  -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <%- include('partials/_header') %>
   </head>
 
   <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg">
-      <a class="navbar-brand" href="#">QuizzApp</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="#"><b>Create</b> your own quiz!</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Menu
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">Log in</a>
-              <a class="dropdown-item" href="#">Log out</a>
-              <a class="dropdown-item" href="#">Sign up</a>
-              <a class="dropdown-item" href="#">My Quizzes</a>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </nav>
 
-    <!-- publiz quiz examples -->
-
+    <main class="container">
+      <section class="quiz-container">
+        <form method="GET" action="/quizzes/<%= quiz_id %>">
+          <button type="submit" class="btn btn-outline-primary">QUIZ NAME</button>
+        </form>
+      </section>
+    </main>
 
 
 

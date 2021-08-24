@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+
+<header>
+  <nav class="navbar navbar-expand-md">
+    <a class="navbar-brand" href="/">QuizzApp</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" href="/quizzes/new"><b>Create</b> a new quiz!</a>
+      </div>
+    </div>
+      <a class="nav-item nav-link" href="/register">Register</a>
+      <a class="nav-item nav-link" href="/login">Login</a>
+      <form method="POST" action="/logout">
+        <button type="submit" class="btn btn-outline-dark">Logout</button>
+      </form>
+  </nav>
+</header>

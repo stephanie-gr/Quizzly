@@ -17,10 +17,9 @@
     <!-- external CSS script  -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-
+    <%- include('partials/_header') %>
   </head>
 
-  <body>
    <!-- navbar -->
 
    <!-- form to create title -->
@@ -31,14 +30,14 @@
 
    <!-- buttons to save as public or private(both will save form and send to URL link page) -->
 
-   <!-- ---------hide above & render below after quiz si submitted by user ---------------------------->
+   <!-- ---------hide above & render below after quiz is submitted by user ---------------------------->
 
    <h1>'quiz title' has been saved as a 'public or private' quiz</quiz></h1>
 
    <p>URL: ${URL}</p>
 
    <p>Share your quiz:</p>
-   <div>
+   <div class="share-buttons">
      <button>twitter</button>
      <button>messenger</button>
      <button>whatsapp</button>
