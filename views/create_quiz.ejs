@@ -5,49 +5,64 @@
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Create</title>
+    <!-- local CSS stylesheets -->
+     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+     <link rel="stylesheet" href="/styles/create_quiz.css" type="text/css" />
 
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+     <!-- external CSS stylesheets -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
+     <!-- local javascript -->
+     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+     <script type="text/javascript" src="/scripts/app.js"></script>
 
-    <!-- external CSS script  -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+     <title>Create</title>
     <%- include('partials/_header') %>
   </head>
+  <body>
    <!-- forms to create quiz title and question/answers -->
    <main class="new-quiz-container">
     <section class="new-quiz">
       <div class="new-quiz-section">
-        <div class="cognito" id="no-title-error">⛔️ Give your quiz a title! ⛔️</div>
-        <div class="cognito" id="no-question-error">⛔️ Fill in the question text before submitting. ⛔️</div>
-        <div class="cognito" id="no-answer-error">⛔️ Fill in the answer options before submitting. ⛔️</div>
+        <section class="quiz-title-form">
+          <div class="cognito create-error" id="no-title-error">⛔️ Give your quiz a title! ⛔️</div>
+          <textarea name="quiz-title-text" id="quiz-title-text" placeholder="What do you want to call your new quiz?"></textarea>
+          <form class="quiz-title" method="POST" ACTION="">
+            <button class="btn btn-collapse-lg" type="submit" for="quiz-title">Next</button>
+          </form>
+
+        </section>
+      </form>
+        <div class="cognito create-error" id="no-question-error">⛔️ Fill in the question text before submitting. ⛔️</div>
+        <div class="cognito create-error" id="no-answer-error">⛔️ Fill in the answer options before submitting. ⛔️</div>
         <form class="new-quiz-form" method="POST" ACTION="">
-          <textarea name="text" id="quiz-title-text" placeholder="What do you want to call your new quiz?"></textarea>
-        </form>
-        <form class="new-question-form" method="POST" ACTION="">
-          <br>
-          <textarea name="text" id="question-text" placeholder="Type your question here."></textarea>
-        </form>
-        <form class="answer=options" method="POST" ACTION="">
-          <br>
-          <textarea name="text" id="option-a" placeholder="Type the CORRECT answer option here."></textarea>
-          <textarea name="text" id="option-b" placeholder="Type an INCORRECT answer option here."></textarea>
-          <textarea name="text" id="option-c" placeholder="Type an INCORRECT answer option here."></textarea>
-          <textarea name="text" id="option-d" placeholder="Type an INCORRECT answer option here."></textarea>
-        </form>
-        <footer>
-          <button class="submit-button" type="submit" for="new-question-form">Add another question</button>
-          <button class="submit-button" type="submit" for="new-question-form">Save as PUBLIC or PRIVATE</button>
-        </footer>
+        <div class="cognito questions">
+          <form class="new-question-form" method="POST" ACTION="">
+            <br>
+            <textarea name="text" id="question-text" placeholder="Type your question here."></textarea>
+          </form>
+          <form class="answer=options" method="POST" ACTION="">
+            <br>
+            <textarea name="option-a-text" id="option-a" placeholder="Type the CORRECT answer option here."></textarea>
+            <br>
+            <textarea name="option-b-text" id="option-b" placeholder="Type an INCORRECT answer option here."></textarea>
+            <br>
+            <textarea name="option-c-text" id="option-c" placeholder="Type an INCORRECT answer option here."></textarea>
+            <br>
+            <textarea name="option-d-text" id="option-d" placeholder="Type an INCORRECT answer option here."></textarea>
+          </form>
+          <footer>
+            <button class="btn btn-collapse-lg" type="submit" for="new-question-form">Add another question</button>
+            <p>Save as<button class="btn btn-collapse-lg" type="submit" for="save-public">PUBLIC</button> or <button class="btn btn-collapse-lg" type="submit" for="save-private">PRIVATE</button></p>
+          </footer>
+        </div>
       </form>
       </div>
     </section>
   </main>
+
 
 
    <!-- ---------hide above & render below after quiz is submitted by user ---------------------------->

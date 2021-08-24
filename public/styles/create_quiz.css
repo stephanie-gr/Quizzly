@@ -1,28 +1,48 @@
 :root {
   --basic-color: rgb(228, 230, 253);
   --basic-text-color: navy;
-  --button-hover-color: rgb(181, 181, 228);
+  --textarea-color: whitesmoke;
+  --error-color: rgba(247, 58, 58, 0.48);
+  --border-radius: 5px;
+}
+
+.quiz-title-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10vh;
+  height: 20vh;
+  align-items: center;
+  justify-content: center;
 }
 
 textarea {
+  border-radius: var(--border-radius);
   border: none;
-  background-color: transparent;
   resize: none;
-  outline: none;
   width: 40vw;
+  overflow: auto;
+  background-color: var(--textarea-color);
+  color: var(--basic-text-color);
 }
 
 .cognito {
   display: none;
 }
 
+.create-error {
+  background-color: var(--error-color);
+  border-radius: var(--border-radius);
+}
+
 .question-and-options {
   display: flex;
   flex-direction: column;
   justify-content:space-between;
-  border: 5px solid blue;
+  align-items: center;
+  height: 80vh;
+  padding-bottom: 5vh;
 }
 
 button:hover {
-  background-color: val(--button-hover-color);
+  background-color: var(--basic-color);
 }
