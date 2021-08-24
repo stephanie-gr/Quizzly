@@ -17,33 +17,54 @@
     <!-- external CSS script  -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-
+    <%- include('partials/_header') %>
   </head>
+   <!-- forms to create quiz title and question/answers -->
+   <main class="new-quiz-container">
+    <section class="new-quiz">
+      <div class="new-quiz-section">
+        <div class="cognito" id="no-title-error">⛔️ Give your quiz a title! ⛔️</div>
+        <div class="cognito" id="no-question-error">⛔️ Fill in the question text before submitting. ⛔️</div>
+        <div class="cognito" id="no-answer-error">⛔️ Fill in the answer options before submitting. ⛔️</div>
+        <form class="new-quiz-form" method="POST" ACTION="">
+          <textarea name="text" id="quiz-title-text" placeholder="What do you want to call your new quiz?"></textarea>
+        </form>
+        <form class="new-question-form" method="POST" ACTION="">
+          <br>
+          <textarea name="text" id="question-text" placeholder="Type your question here."></textarea>
+        </form>
+        <form class="answer=options" method="POST" ACTION="">
+          <br>
+          <textarea name="text" id="option-a" placeholder="Type the CORRECT answer option here."></textarea>
+          <textarea name="text" id="option-b" placeholder="Type an INCORRECT answer option here."></textarea>
+          <textarea name="text" id="option-c" placeholder="Type an INCORRECT answer option here."></textarea>
+          <textarea name="text" id="option-d" placeholder="Type an INCORRECT answer option here."></textarea>
+        </form>
+        <footer>
+          <button class="submit-button" type="submit" for="new-question-form">Add another question</button>
+          <button class="submit-button" type="submit" for="new-question-form">Save as PUBLIC or PRIVATE</button>
+        </footer>
+      </form>
+      </div>
+    </section>
+  </main>
 
-  <body>
-   <!-- navbar -->
 
-   <!-- form to create title -->
+   <!-- ---------hide above & render below after quiz is submitted by user ---------------------------->
+  <div class="cognito" id="URL-for-user-quiz">
+  <h1>'quiz title' has been saved as a 'public or private' quiz</quiz></h1>
 
-   <!-- form to enter question and answer options -->
+  <p>URL: ${URL}</p>
 
-   <!-- button to add another question(will refresh page and give new question form) -->
-
-   <!-- buttons to save as public or private(both will save form and send to URL link page) -->
-
-   <!-- ---------hide above & render below after quiz si submitted by user ---------------------------->
-
-   <h1>'quiz title' has been saved as a 'public or private' quiz</quiz></h1>
-
-   <p>URL: ${URL}</p>
-
-   <p>Share your quiz:</p>
-   <div>
-     <button>twitter</button>
-     <button>messenger</button>
-     <button>whatsapp</button>
-     <button>email</button>
-   </div>
-
+  <p>Share your quiz:</p>
+  <div class="share-buttons">
+    <button>twitter</button>
+    <button>messenger</button>
+    <button>whatsapp</button>
+    <button>email</button>
+  </div>
+  </div>
   </body>
 </html>
+
+

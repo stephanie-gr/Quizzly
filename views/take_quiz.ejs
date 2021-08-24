@@ -19,36 +19,11 @@
     <!-- external CSS script  -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-
+    <%- include('partials/_header') %>
   </head>
 
   <body>
 
-    <!-- navbar -->
-    <nav class="navbar navbar-expand-lg">
-      <a class="navbar-brand" href="#">QuizzApp</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="#"><b>Create</b> your own quiz!</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Menu
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">Log in</a>
-              <a class="dropdown-item" href="#">Log out</a>
-              <a class="dropdown-item" href="#">Sign up</a>
-              <a class="dropdown-item" href="#">My Quizzes</a>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </nav>
     <h3>You are taking ${Quiz Title} made by ${username or user's name}</h3>
 
     <form class="new_quiz_submission" id="new_quiz_submission" action="" accept-charset="UTF-8" method="post">

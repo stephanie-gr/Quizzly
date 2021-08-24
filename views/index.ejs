@@ -22,64 +22,59 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@500&display=swap" rel="stylesheet">
 
+    <%- include('partials/_header') %>
   </head>
 
   <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg">
-      <a class="navbar-brand" href="#">QuizzApp</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="#"><b>Create</b> your own quiz!</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Menu
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">Log in</a>
-              <a class="dropdown-item" href="#">Log out</a>
-              <a class="dropdown-item" href="#">Sign up</a>
-              <a class="dropdown-item" href="#">My Quizzes</a>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
     <div>
       <p>If you were invited to take a specific quiz, copy and paste the URL!</p>
     </div>
 
     <!-- public quiz examples -->
-    <div class="spotlight-public-quizzes">
-      <div class="row">
-        <div class="col-sm">
-          Planets
+    <main class="container">
+      <section class="spotlight-public-quizzes">
+        <div class="row">
+          <div class="col-sm">
+              <p>Quiz Name</p>
+              <!-- form, method get, action quizzes/quiz_id -->
+              <button type="submit" class="btn btn-outline-info btn-lg">Take this quiz</button>
+              <!-- end form -->
+
+              <!-- form, method get, action ?(url share page) -->
+              <button type="submit" class="btn btn-outline-info btn-lg">Share with friends</button>
+              <!-- end form -->
+          </div>
         </div>
-        <div class="col-sm" href="">
-          Capital Cities
+        <div class="row">
+          <div class="col-sm">
+            <p>Quiz Name</p>
+              <!-- form, method get, action quizzes/quiz_id -->
+              <button type="submit" class="btn btn-outline-info btn-lg">Take this quiz</button>
+              <!-- end form -->
+
+              <!-- form, method get, action ?(url share page) -->
+              <button type="submit" class="btn btn-outline-info btn-lg">Share with friends</button>
+              <!-- end form -->
+
+          </div>
         </div>
-        <div class="col-sm">
-          NFL Teams
+        <div class="row">
+          <div class="col-sm">
+            <p>Quiz Name</p>
+              <!-- form, method get, action quizzes/quiz_id -->
+              <button type="submit" class="btn btn-outline-info btn-lg">Take this quiz</button>
+              <!-- end form -->
+
+              <!-- form, method get, action ?(url share page) -->
+              <button type="submit" class="btn btn-outline-info btn-lg">Share with friends</button>
+              <!-- end form -->
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm">
-          Another Quiz!
-        </div>
-        <div class="col-sm">
-          Whales
-        </div>
-        <div class="col-sm">
-          Eels
-        </div>
-      </div>
-    </div>
+      </section>
+    </main>
+
+
+
 
 
 
