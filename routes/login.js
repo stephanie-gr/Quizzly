@@ -3,7 +3,11 @@ const router = express.Router();
 
 const getLogin = (db) => {
   router.post("/login", (req, res) => {
-    let query = `SELECT name FROM users`;
+    let query = `
+    SELECT name
+    FROM users
+    WHERE users.id = '1';
+    `;
     console.log(query);
     db.query(query)
       .then((data) => {
