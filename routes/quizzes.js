@@ -51,7 +51,7 @@ const newQuizFormShow = (db) => {
 const getQuiz = (db) => {
   router.get("/:quiz_id", (req, res) => {
     let query = `
-    SELECT quizzes.title, questions.question, questions.option_a, questions.option_b, questions.option_c, questions.option_d, questions.correct_answer
+    SELECT questions.id, quizzes.title, questions.question, questions.option_a, questions.option_b, questions.option_c, questions.option_d, questions.correct_answer
     FROM quizzes
     JOIN questions
     ON quizzes.id = questions.quiz_id
