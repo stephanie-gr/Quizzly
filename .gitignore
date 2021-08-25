@@ -3,7 +3,7 @@ node_modules/
 .env
 *.log
 *.sqlite3
-
+package-lock.json
 planning/.DS_Store
 views/.DS_Store
 .DS_Store
