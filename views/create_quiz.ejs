@@ -15,7 +15,8 @@
 
      <!-- local javascript -->
      <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-     <script type="text/javascript" src="/scripts/app.js"></script>
+     <!-- <script type="text/javascript" src="/scripts/app.js"></script> -->
+     <script type="text/javascript" src="/scripts/createQuiz.js"></script>
 
 
      <title>Create</title>
@@ -28,9 +29,9 @@
       <div class="new-quiz-section">
         <section class="quiz-title-form">
           <div class="cognito create-error" id="no-title-error">⛔️ Give your quiz a title! ⛔️</div>
-          <textarea name="quiz-title-text" id="quiz-title-text" placeholder="What do you want to call your new quiz?"></textarea>
           <form class="quiz-title" method="POST" ACTION="">
-            <button class="btn btn-collapse-lg" type="submit" for="quiz-title">Next</button>
+          <textarea name="quiz-title-text" id="quiz-title-text" placeholder="What do you want to call your new quiz?"></textarea>
+            <button class="btn btn-collapse-lg" type="submit" for="quiz-title-text">Next</button>
           </form>
 
         </section>
