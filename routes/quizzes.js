@@ -1,13 +1,20 @@
 const express = require("express");
 const router = express.Router();
 
+// TODO:
+// PROTECT AGAINST SQL INJECTION
+// REFACTOR TO EXPORT ONE FUNCTION, WITH MULTIPLE ROUTERS
+
 //GETS
 // needs to add WHERE taking quizzes from quizzes.creator_id = userid (from session?)
 const getQuizzes = (db) => {
   router.get("/", (req, res) => {
-    let query = `SELECT * FROM quizzes`;
+    let query = `
+    SELECT * FROM quizzes
+    WHERE creator_id = $1;
+    `;
     console.log(query);
-    db.query(query)
+    db.query(query, [req.cookies.user_id])
       .then((data) => {
         const quizzes = data.rows;
         res.json({ quizzes });
@@ -46,7 +53,8 @@ const getQuiz = (db) => {
     FROM quizzes
     JOIN questions
     ON quizzes.id = questions.quiz_id
-    WHERE quiz_id = '${req.params.quiz_id}';`;
+    WHERE quiz_id = ${req.params.quiz_id};
+    `;
     console.log(query);
     db.query(query)
       .then((data) => {
@@ -73,7 +81,7 @@ const getQuiz = (db) => {
 // ASK: How do we implement the new quiz? Need to create a new quiz -> then create a new question for each quiz, RETURNING * for retrieving quiz_id to use in another query for question creation form??
 const newQuiz = (db) => {
   router.post("/new", (req, res) => {
-    let query = `INSERT INTO quizzes ...RETURNING *`;
+    let query = `INSERT INTO quizzes ... RETURNING *`;
     console.log(query);
     db.query(query)
       .then((data) => {
@@ -97,6 +105,7 @@ const submitQuestion = (db) => {
     db.query(query)
       .then(() => {
         const quizID = req.params.quiz_id;
+        //instead of res.redirect, return whatever is from RETURNING * as json, use ajax to reset the form on submission, and publish etc.
         res.redirect(`/questions/${quizID}`);
       })
       .catch((err) => {

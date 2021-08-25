@@ -2,16 +2,17 @@ const express = require("express");
 const router = express.Router();
 
 const getLogin = (db) => {
-  router.post("/login", (req, res) => {
+  router.post("/", (req, res) => {
     let query = `
-    SELECT name
+    SELECT id
     FROM users
-    WHERE users.id = '1';
+    WHERE users.username = $1;
     `;
     console.log(query);
-    db.query(query)
+    db.query(query, [req.body.username])
       .then((data) => {
-        res.send(data.rows.name);
+        req.sessions.userid = data.rows[0].id;
+        res.redirect("/");
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
