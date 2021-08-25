@@ -48,18 +48,13 @@ const loginRoutes = require("./routes/login");
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 //TODO: route the rest of quizzes.js
-app.use("/api/users", usersRoutes(db));
-app.use("/api/widgets", widgetsRoutes(db));
-app.use("/api/quizzes", quizzesRoutes.getQuizzes(db));
-app.use(
-  "/api/quizzes/questions/:quiz_id",
-  quizzesRoutes.newQuestionFormShow(db)
-);
-app.use("/api/quizzes/new", quizzesRoutes.newQuizFormShow(db));
-app.use("/api/quizzes/:quiz_id", quizzesRoutes.getQuiz(db));
 app.use("/api/", homepageRoutes(db));
-app.use("/api/quizzes/title", quizzesRoutes.newQuiz(db));
-app.use("/api/quizzes/questions", quizzesRoutes.submitNewQuestion(db));
+
+app.use("/api/users", usersRoutes(db));
+
+app.use("/api/widgets", widgetsRoutes(db));
+
+app.use("/api/quizzes", quizzesRoutes(db));
 
 app.use("/login", loginRoutes(db));
 // Note: mount other resources here, using the same pattern above
