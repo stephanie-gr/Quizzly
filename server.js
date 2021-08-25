@@ -81,8 +81,10 @@ app.get("/quizzes/new", (req, res) => {
   res.render("create_quiz");
 });
 
-app.get("/quizzes/1", (req, res) => {
-  res.render("take_quiz");
+app.get("/quizzes/:quiz_id", (req, res) => {
+  // console.log("here:", req.body);
+  const templateVars = { quizID: req.params.quiz_id };
+  res.render("take_quiz", templateVars);
 });
 
 app.listen(PORT, () => {

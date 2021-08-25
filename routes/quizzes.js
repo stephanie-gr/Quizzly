@@ -49,13 +49,13 @@ const newQuizFormShow = (db) => {
 const getQuiz = (db) => {
   router.get("/:quiz_id", (req, res) => {
     let query = `
-    SELECT quizzes.title, questions.question, questions.option_a, questions.option_b, questions.option_c, questions.option_d
+    SELECT quizzes.title, questions.question, questions.option_a, questions.option_b, questions.option_c, questions.option_d, questions.correct_answer
     FROM quizzes
     JOIN questions
     ON quizzes.id = questions.quiz_id
     WHERE quiz_id = ${req.params.quiz_id};
     `;
-    console.log(query);
+    // console.log(query);
     db.query(query)
       .then((data) => {
         console.log(data.rows);
@@ -82,7 +82,7 @@ const getQuiz = (db) => {
 const newQuiz = (db) => {
   router.post("/new", (req, res) => {
     let query = `INSERT INTO quizzes ... RETURNING *`;
-    console.log(query);
+    // console.log(query);
     db.query(query)
       .then((data) => {
         const quizId = data.rows[0].id;
@@ -125,7 +125,7 @@ const submitQuiz = (db) => {
     INSERT INTO user_answers (user_id, date, question_id, correct)
     VALUES ('1', NOW(),)
     `;
-    console.log(query);
+    // console.log(query);
     db.query(query)
       .then(() => {
         res.redirect("/quizzes");
@@ -148,7 +148,7 @@ const editQuiz = (db) => {
     SET is_public = ... //toggle-button state
     WHERE quizzes.id = '${req.params.quiz_id}';
     `;
-    console.log(query);
+    // console.log(query);
     db.query(query)
       .then(() => {
         res.redirect("/quizzes");
@@ -169,7 +169,7 @@ const deleteQuiz = (db) => {
     DELETE FROM quizzes
     WHERE quiz_id = '${req.params.quiz_id}'
     `;
-    console.log(query);
+    // console.log(query);
     db.query(query)
       .then(() => {
         res.redirect("/quizzes");
