@@ -7,7 +7,6 @@ module.exports = (db) => {
     SELECT *
     FROM quizzes
     WHERE is_public = true
-    LIMIT 3
     `;
     db.query(query)
       .then((data) => {
