@@ -1,6 +1,5 @@
 $(() => {
   $.get("/api/").then((pubQuizzes) => {
-    console.log(pubQuizzes);
     const quizChildren = [];
     for (const quiz of pubQuizzes) {
       quizChildren.push(nextQuiz(quiz));
