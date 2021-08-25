@@ -88,7 +88,6 @@ app.get("/quizzes/new", (req, res) => {
 // })
 
 app.get("/quizzes/:quiz_id", (req, res) => {
-  // console.log("here:", req.body);
   const templateVars = { quizID: req.params.quiz_id };
   res.render("take_quiz", templateVars);
 });
