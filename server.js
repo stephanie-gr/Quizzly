@@ -58,6 +58,8 @@ app.use(
 app.use("/api/quizzes/new", quizzesRoutes.newQuizFormShow(db));
 app.use("/api/quizzes/:quiz_id", quizzesRoutes.getQuiz(db));
 app.use("/api/", homepageRoutes(db));
+app.use("/api/quizzes/title", quizzesRoutes.newQuiz(db));
+app.use("/api/quizzes/questions", quizzesRoutes.submitNewQuestion(db));
 
 app.use("/login", loginRoutes(db));
 // Note: mount other resources here, using the same pattern above
@@ -80,6 +82,10 @@ app.get("/quizzes", (req, res) => {
 app.get("/quizzes/new", (req, res) => {
   res.render("create_quiz");
 });
+
+// app.post("/quizzes/title", (req, res) => {
+
+// })
 
 app.get("/quizzes/:quiz_id", (req, res) => {
   // console.log("here:", req.body);

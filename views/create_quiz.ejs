@@ -40,8 +40,9 @@
         <section class="cognito question-and-answers">
           <div class="cognito create-error" id="no-question-error">⛔️ Fill in the question text before submitting. ⛔️</div>
           <div class="cognito create-error" id="no-answer-error">⛔️ Fill in the answer options before submitting. ⛔️</div>
-          <form class="new-question-form" method="POST" ACTION="">
-              <br>
+          <form class="new-question-form" id ="new-question-form" method="POST" ACTION="">
+            <input name="quizId" id="question-id" type="hidden">
+            <br>
               <textarea name="text" id="question-text" placeholder="Type your question here."></textarea>
               <br>
               <textarea name="option-a-text" id="option-a-text" placeholder="Type the CORRECT answer option here."></textarea>

@@ -36,6 +36,8 @@ const newQuestionFormShow = (db) => {
   return router;
 };
 
+
+
 // TODO: RENDER PAGE
 // ASK: similar to question ask^^^
 const newQuizFormShow = (db) => {
@@ -78,17 +80,25 @@ const getQuiz = (db) => {
 // POSTS
 // ASK: should we handle posts with res.redirect?
 
+
 // ASK: How do we implement the new quiz? Need to create a new quiz -> then create a new question for each quiz, RETURNING * for retrieving quiz_id to use in another query for question creation form??
 const newQuiz = (db) => {
-  router.post("/new", (req, res) => {
-    let query = `INSERT INTO quizzes ... RETURNING *`;
-    // console.log(query);
-    db.query(query)
+  router.post("/title", (req, res) => {
+    let params = [req.body['quiz-title-text']];
+    let query = `
+    INSERT INTO quizzes (title)
+    VALUES ($1)
+    RETURNING *
+    `;
+    console.log('this is query and params', query, params);
+    db.query(query, [params])
       .then((data) => {
         const quizId = data.rows[0].id;
-        res.redirect(`/questions/${quizId}`);
+        res.json ({
+          quiz_id: quizId
+        })
+        console.log('got the quizIDDDDD', quizId);
       })
-      .then()
       .catch((err) => {
         res.status(500).json({ error: err.message });
       });
@@ -99,16 +109,23 @@ const newQuiz = (db) => {
 /*
 question creation button -> inserts a new question into questions table FOR questions.quiz_id = quizzes.id
 */
-const submitQuestion = (db) => {
-  router.post("/questions/:quiz_id", (req, res) => {
-    let query = `INSERT INTO questions WHERE quiz-id = quiz-id`;
-    db.query(query)
-      .then(() => {
-        const quizID = req.params.quiz_id;
-        //instead of res.redirect, return whatever is from RETURNING * as json, use ajax to reset the form on submission, and publish etc.
-        res.redirect(`/questions/${quizID}`);
+const submitNewQuestion = (db) => {
+  router.post("/questions", (req, res) => {
+    console.log('req', req.body)
+    let params = [req.body.quizId, req.body['text'], req.body['option-a-text'], req.body['option-b-text'], req.body['option-c-text'], req.body['option-d-text'], req.body['option-a-text']];
+    let query = `
+    INSERT INTO questions (quiz_id, question, option_a, option_b, option_c, option_d, correct_answer)
+    VALUES($1, $2, $3, $4, $5, $6, $7)
+    RETURNING *
+    `;
+    console.log('query:', query, params);
+    db.query(query, params)
+      .then((data) => {
+
+        console.log('data rows', data.rows);
       })
       .catch((err) => {
+        console.log(err);
         res.status(500).json({ error: err.message });
       });
   });
@@ -187,7 +204,7 @@ module.exports = {
   newQuestionFormShow,
   newQuizFormShow,
   newQuiz,
-  submitQuestion,
+  submitNewQuestion,
   submitQuiz,
   editQuiz,
   deleteQuiz,
