@@ -41,6 +41,7 @@ textarea {
   align-items: center;
   height: 80vh;
   padding-bottom: 5vh;
+  align-self: center;
 }
 
 button:hover {

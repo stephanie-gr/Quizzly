@@ -27,37 +27,37 @@
    <main class="new-quiz-container">
     <section class="new-quiz">
       <div class="new-quiz-section">
+
         <section class="quiz-title-form">
           <div class="cognito create-error" id="no-title-error">⛔️ Give your quiz a title! ⛔️</div>
           <form class="quiz-title" method="POST" ACTION="">
           <textarea name="quiz-title-text" id="quiz-title-text" placeholder="What do you want to call your new quiz?"></textarea>
             <button class="btn btn-collapse-lg" type="submit" for="quiz-title-text">Next</button>
           </form>
-
         </section>
-      </form>
-        <div class="cognito create-error" id="no-question-error">⛔️ Fill in the question text before submitting. ⛔️</div>
-        <div class="cognito create-error" id="no-answer-error">⛔️ Fill in the answer options before submitting. ⛔️</div>
-        <form class="new-quiz-form" method="POST" ACTION="">
-        <div class="cognito questions">
+
+
+        <section class="cognito question-and-answers">
+          <div class="cognito create-error" id="no-question-error">⛔️ Fill in the question text before submitting. ⛔️</div>
+          <div class="cognito create-error" id="no-answer-error">⛔️ Fill in the answer options before submitting. ⛔️</div>
           <form class="new-question-form" method="POST" ACTION="">
-            <br>
-            <textarea name="text" id="question-text" placeholder="Type your question here."></textarea>
-          </form>
-          <form class="answer=options" method="POST" ACTION="">
-            <br>
-            <textarea name="option-a-text" id="option-a" placeholder="Type the CORRECT answer option here."></textarea>
-            <br>
-            <textarea name="option-b-text" id="option-b" placeholder="Type an INCORRECT answer option here."></textarea>
-            <br>
-            <textarea name="option-c-text" id="option-c" placeholder="Type an INCORRECT answer option here."></textarea>
-            <br>
-            <textarea name="option-d-text" id="option-d" placeholder="Type an INCORRECT answer option here."></textarea>
-          </form>
-          <footer>
-            <button class="btn btn-collapse-lg" type="submit" for="new-question-form">Add another question</button>
-            <p>Save as<button class="btn btn-collapse-lg" type="submit" for="save-public">PUBLIC</button> or <button class="btn btn-collapse-lg" type="submit" for="save-private">PRIVATE</button></p>
-          </footer>
+              <br>
+              <textarea name="text" id="question-text" placeholder="Type your question here."></textarea>
+              <br>
+              <textarea name="option-a-text" id="option-a-text" placeholder="Type the CORRECT answer option here."></textarea>
+              <br>
+              <textarea name="option-b-text" id="option-b-text" placeholder="Type an INCORRECT answer option here."></textarea>
+              <br>
+              <textarea name="option-c-text" id="option-c-text" placeholder="Type an INCORRECT answer option here."></textarea>
+              <br>
+              <textarea name="option-d-text" id="option-d-text" placeholder="Type an INCORRECT answer option here."></textarea>
+              <footer>
+                <button class="btn btn-collapse-lg" type="submit" for="new-question-form" id="add-another-question">Add another question</button>
+                <p>Save as<button class="btn btn-collapse-lg" type="submit" for="save-public" id="save-public">PUBLIC</button> or <button class="btn btn-collapse-lg" type="submit" for="save-private" id="save-private">PRIVATE</button></p>
+              </footer>
+            </form>
+          </section>
+
         </div>
       </form>
       </div>
