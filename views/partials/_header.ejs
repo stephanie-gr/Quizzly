@@ -7,15 +7,15 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" href="/quizzes/new"><b>Create</b> a new quiz!</a>
-      </div>
-    </div>
-      <% if(!user) { %>
-        <a class="nav-item nav-link" href="/login">Login</a>
-        <% } else { %>
-        <a class="nav-item nav-link" href="/quizzes"> My Quizzes</a>
+    <% if(!user) { %>
+      <a class="nav-item nav-link" href="/login">Login</a>
+      <% } else { %>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link" href="/quizzes/new"><b>Create</b> a new quiz!</a>
+            <a class="nav-item nav-link" href="/quizzes"> My Quizzes</a>
+          </div>
+        </div>
       <form id="logout">
         <button type="submit" class="btn btn-outline-dark">Logout</button>
       </form>
