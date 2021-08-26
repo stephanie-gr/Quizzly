@@ -11,13 +11,16 @@ $(() => {
 
   const nextQuiz = (quiz) => {
     const $quiz = `
-    <a class="project-bio mb-4" href="${quiz.url}">
-      <div class="info">
-        <div class="icon icon-type" title="Project"></div>
-        <div class="name">${quiz.title}&nbsp;</div>
-        <p>${quiz.url}<p>
-      </div>
-    </a>
+    <div class="quiz-element">
+      <a class="project-bio mb-4" href="${quiz.url}">
+        <div class="info">
+          <div class="icon icon-type" title="Project"></div>
+          <div class="name">${quiz.title}&nbsp;</div>
+          </div>
+      </a>
+      <p>Share with this URL: ${quiz.url}<p>
+
+    </div>
     `;
     return $quiz;
   };
