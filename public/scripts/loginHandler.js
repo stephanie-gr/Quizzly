@@ -17,7 +17,7 @@ $(() => {
 
     $.post("/logout").then(() => {
       console.log("successfully logged out!");
-      window.location.replace("/");
+      window.location.replace("/login");
     });
   };
 

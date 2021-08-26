@@ -63,11 +63,13 @@ app.use("/login", loginRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  res.render("index");
+  const templateVars = { user: req.cookies.user_id };
+  res.render("index", templateVars);
 });
 
 app.get("/login", (req, res) => {
-  res.render("login");
+  const templateVars = { user: req.cookies.user_id };
+  res.render("login", templateVars);
 });
 
 app.post("/logout", (req, res) => {
@@ -75,19 +77,25 @@ app.post("/logout", (req, res) => {
 });
 
 app.get("/quizzes", (req, res) => {
-  res.render("my_quizzes");
+  const templateVars = { user: req.cookies.user_id };
+  res.render("my_quizzes", templateVars);
 });
 
 app.get("/quizzes/new", (req, res) => {
-  res.render("create_quiz");
+  const templateVars = { user: req.cookies.user_id };
+  res.render("create_quiz", templateVars);
 });
 
 app.get("/quizzes/:quiz_id/results", (req, res) => {
-  res.render("results");
+  const templateVars = { user: req.cookies.user_id };
+  res.render("results", templateVars);
 });
 
 app.get("/quizzes/:quiz_id", (req, res) => {
-  const templateVars = { quizID: req.params.quiz_id };
+  const templateVars = {
+    quizID: req.params.quiz_id,
+    user: req.cookies.user_id,
+  };
   res.render("take_quiz", templateVars);
 });
 

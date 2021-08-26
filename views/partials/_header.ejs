@@ -10,12 +10,15 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-item nav-link" href="/quizzes/new"><b>Create</b> a new quiz!</a>
-        <a class="nav-item nav-link" href="/quizzes"> My Quizzes</a>
       </div>
     </div>
-      <a class="nav-item nav-link" href="/login">Login</a>
+      <% if(!user) { %>
+        <a class="nav-item nav-link" href="/login">Login</a>
+        <% } else { %>
+        <a class="nav-item nav-link" href="/quizzes"> My Quizzes</a>
       <form id="logout">
         <button type="submit" class="btn btn-outline-dark">Logout</button>
       </form>
+      <% } %>
   </nav>
 </header>
