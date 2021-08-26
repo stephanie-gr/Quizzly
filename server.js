@@ -78,6 +78,10 @@ app.get("/quizzes/new", (req, res) => {
   res.render("create_quiz");
 });
 
+app.get("/quizzes/:quiz_id/results", (req, res) => {
+  res.render("results");
+});
+
 // app.post("/quizzes/title", (req, res) => {
 
 // })

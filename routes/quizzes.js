@@ -104,6 +104,29 @@ module.exports = (db) => {
       });
   });
 
+  router.post("/:quiz_id/results", (req, res) => {
+    const answers = req.body.answers;
+    let matched = 0;
+    let query = `
+    SELECT correct_answer FROM questions
+    JOIN quizzes ON quizzes.id = $1
+    WHERE quiz_id = $1;
+    `;
+    db.query(query, [req.params.quiz_id]).then((correctAnswers) => {
+      for (let i = 0; i < correctAnswers.rows.length; i++) {
+        if (correctAnswers.rows[i].correct_answer === answers[i]) {
+          matched++;
+        }
+      }
+      const results = {
+        matched: matched,
+        numAnswers: correctAnswers.rows.length,
+        quizID: req.params.quiz_id,
+      };
+      res.json(results);
+    });
+  });
+
   //edit quiz
   //TODO: create toggle button on my_quizzes page for this route
   router.put("/:quiz_id/edit", (req, res) => {
