@@ -25,57 +25,61 @@ $(() => {
 
     $("#current-quiz").append($form);
   });
+});
 
-  const nextQuestion = (question) => {
-    const $question = `
-  <div class="submission-question card">
-        <div class="card-header">
-          <h3 class="text-primary">${question.question}</h3>
-        </div>
-        <div class="card-body">
-          <p></p>
-          <p></p>
-          <p></p>
-        <div class="submission-answer">
-          <h4 class="text-muted">Possible Answers</h4>
-          <div class="list-group">
-            <input type="radio" name="answers${index}" class="a-1" id="o${question.option_a}q${question.id}" value=${question.option_a}>
-            <label for="o${question.option_a}q${question.id}">
-              <div class="list-group-item" id="1642">
-                <p></p>
-                <p>${question.option_a}</p>
-                <p></p>
-              </div>
-            </label>
-            <input type="radio" name="answers${index}" class="a-2"id="o${question.option_b}q${question.id}" value=${question.option_b}>
-            <label for="o${question.option_b}q${question.id}">
-              <div class="list-group-item" id="">
-                <p></p>
-                <p>${question.option_b}</p>
-                <p></p>
-              </div>
-            </label>
-            <input type="radio" name="answers${index}" class="a-3" id="o${question.option_c}q${question.id}" value="${question.option_c}">
-            <label for="o${question.option_c}q${question.id}">
-              <div class="list-group-item" id="">
-                <p></p>
-                <p>${question.option_c}</p>
-                <p></p>
-              </div>
-            </label>
-            <input type="radio" name="answers${index}" class="a-4" id="o${question.option_d}q${question.id}" value="${question.option_d}">
-            <label for="o${question.option_d}q${question.id}">
-              <div class="list-group-item" id="">
-                <p></p>
-                <p>${question.option_d}</p>
-                <p></p>
-              </div>
-            </label>
-          </div>
+const nextQuestion = (question) => {
+  let options = randomizeOrder(question);
+  const $question = `
+<div class="submission-question card">
+      <div class="card-header">
+        <h3 class="text-primary">${question.question}</h3>
+      </div>
+      <div class="card-body">
+        <p></p>
+        <p></p>
+        <p></p>
+      <div class="submission-answer">
+        <h4 class="text-muted">Possible Answers</h4>
+        <div class="list-group">
+          ${options}
         </div>
       </div>
     </div>
-  `;
-    return $question;
-  };
-});
+  </div>
+`;
+  return $question;
+};
+
+const randomizeOrder = (question) => {
+  const optionsArray = ["option_a", "option_b", "option_c", "option_d"];
+
+  const $option = [];
+
+  shuffleArray(optionsArray);
+
+  for (const option of optionsArray) {
+    let string = `
+    <input type="radio" name="answers${index}" id="o${question[option]}q${question.id}" value=${question[option]}>
+    <label for="o${question[option]}q${question.id}">
+      <div class="list-group-item" id="1642">
+        <p></p>
+        <p>${question[option]}</p>
+        <p></p>
+      </div>
+    </label>
+    `;
+
+    $option.push(string);
+  }
+  console.log($option);
+  return $option.join("");
+};
+
+const shuffleArray = (array) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    let temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+};
