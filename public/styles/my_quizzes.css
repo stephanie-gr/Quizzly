@@ -1,4 +1,12 @@
-.list-of-users-quizzes {
+main .container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30vh;
+  height: 100vh;
+  color: var(--basic-text-color);
+}
+
+.quiz-element {
   /* display: flex;
   flex-direction: column;
   border: 5px solid slateblue; */
@@ -8,8 +16,8 @@
   border: 5px solid var(--basic-color);
   border-radius: 10px;
   justify-content: center;
-  margin: 5em;
-  height: 30vh;
+  margin: 2em;
+  height: 20vh;
   font-family: "Hind Siliguri", sans-serif;
   color: var(--basic-text-color);
   font-size: 20px;
