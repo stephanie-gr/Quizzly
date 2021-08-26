@@ -18,16 +18,17 @@ module.exports = (db) => {
   });
 
   //get quiz
-  router.get("/:quiz_id", (req, res) => {
+  router.get("/:quiz_url", (req, res) => {
     let query = `
     SELECT questions.id, quizzes.title, questions.question, questions.option_a, questions.option_b, questions.option_c, questions.option_d, questions.correct_answer
     FROM quizzes
     JOIN questions
     ON quizzes.id = questions.quiz_id
-    WHERE quiz_id = $1;
+    WHERE url = $1;
     `;
-    // console.log(query);
-    db.query(query, [req.params.quiz_id])
+    const params = "/quizzes/" + req.params.quiz_url;
+
+    db.query(query, [params])
       .then((data) => {
         console.log(data.rows);
         const quiz = data.rows;
