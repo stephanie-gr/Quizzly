@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
 
 <header>
+  <script type="text/javascript" src="/scripts/loginHandler.js"></script>
   <nav class="navbar navbar-expand-md">
     <a class="navbar-brand" href="/">QuizzApp</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,11 +10,12 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-item nav-link" href="/quizzes/new"><b>Create</b> a new quiz!</a>
+        <a class="nav-item nav-link" href="/quizzes"> My Quizzes</a>
       </div>
     </div>
       <a class="nav-item nav-link" href="/register">Register</a>
       <a class="nav-item nav-link" href="/login">Login</a>
-      <form class="logout" method="POST" action="/logout">
+      <form id="logout">
         <button type="submit" class="btn btn-outline-dark">Logout</button>
       </form>
   </nav>

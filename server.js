@@ -66,12 +66,12 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-// app.get("/login/:id", (req, res) => {
-//   res.cookie("user_id", req.params.id).redirect("/");
-// });
-
 app.get("/login", (req, res) => {
   res.render("login");
+});
+
+app.post("/logout", (req, res) => {
+  res.clearCookie("user_id").redirect("/");
 });
 
 app.get("/quizzes", (req, res) => {
@@ -85,10 +85,6 @@ app.get("/quizzes/new", (req, res) => {
 app.get("/quizzes/:quiz_id/results", (req, res) => {
   res.render("results");
 });
-
-// app.post("/quizzes/title", (req, res) => {
-
-// })
 
 app.get("/quizzes/:quiz_id", (req, res) => {
   const templateVars = { quizID: req.params.quiz_id };
