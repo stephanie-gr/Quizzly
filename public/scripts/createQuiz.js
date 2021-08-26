@@ -18,7 +18,6 @@ $(() =>  {
 
 });
 
-
 const onTitleSubmit = function(event) {
   event.preventDefault();
 
@@ -78,10 +77,6 @@ const onAddAnotherQuestionSubmit = function(event) {
 
    const data = $("#new-question-form").serialize();
 
-  //  const $questionFormData = [questionText, optionA, optionB, optionC, optionD]
-
-
-
    $.ajax({
     type: "POST",
     url: "/api/quizzes/questions",
@@ -92,7 +87,6 @@ const onAddAnotherQuestionSubmit = function(event) {
   });
 
   $("#new-question-form").trigger('reset')
-
 
 }
 
@@ -117,22 +111,30 @@ const onSavePublic = function(event) {
     return $noAnswerErrorMsg.slideDown();
   }
 
-  const questionText = $("question-text");
-  console.log(questionText.serialize());
+  const data = $("#new-question-form").serialize();
 
-  const optionA = $("#option-a-text");
-  console.log(optionA.serialize());
+  $.ajax({
+   type: "POST",
+   url: "/api/quizzes/questions",
+   data: data,
+   success: function(result) {
+     console.log(result);
+   }
+ }).then(
+   $.ajax({
+    type: "POST",
+    url: "/api/quizzes/public",
+    data: data,
+    success: function(result) {
+      console.log(result);
+    }
+   })
+ )
 
-  const optionB = $("#option-b-text");
-  console.log(optionB.serialize());
+ $(".question-and-answers").slideUp();
 
-  const optionC = $("#option-c-text");
-  console.log(optionC.serialize());
+ return $(".url-for-user-quiz").slideDown();
 
-  const optionD = $("#option-d-text");
-  console.log(optionD.serialize());
-
-  //call something to SAVE this data as PUBLIC quiz and return  URLlink.slideDOwn()
 }
 
 const onSavePrivate = function(event) {
@@ -156,64 +158,44 @@ const onSavePrivate = function(event) {
     return $noAnswerErrorMsg.slideDown();
   }
 
-  //grab question and options text
-  const questionText = $("question-text");
-  console.log(questionText.serialize());
+  const data = $("#new-question-form").serialize();
 
-  const optionA = $("#option-a-text");
-  console.log(optionA.serialize());
-
-  const optionB = $("#option-b-text");
-  console.log(optionB.serialize());
-
-  const optionC = $("#option-c-text");
-  console.log(optionC.serialize());
-
-  const optionD = $("#option-d-text");
-  console.log(optionD.serialize());
-
-  //call something to SAVE this data as PRIVATE quiz and return  URLlink.slideDOwn()
-}
-
-const nextQuestion = () => {
-  const $newQuestion = `
-  <section class="cognito question-and-answers">
-  <div class="cognito create-error" id="no-question-error">⛔️ Fill in the question text before submitting. ⛔️</div>
-  <div class="cognito create-error" id="no-answer-error">⛔️ Fill in the answer options before submitting. ⛔️</div>
-  <form class="new-question-form" method="POST" ACTION="">
-      <br>
-      <textarea name="text" id="question-text" placeholder="Type your question here."></textarea>
-      <br>
-      <textarea name="option-a-text" id="option-a-text" placeholder="Type the CORRECT answer option here."></textarea>
-      <br>
-      <textarea name="option-b-text" id="option-b-text" placeholder="Type an INCORRECT answer option here."></textarea>
-      <br>
-      <textarea name="option-c-text" id="option-c-text" placeholder="Type an INCORRECT answer option here."></textarea>
-      <br>
-      <textarea name="option-d-text" id="option-d-text" placeholder="Type an INCORRECT answer option here."></textarea>
-      <footer>
-        <button class="btn btn-collapse-lg" type="submit" for="new-question-form" id="add-another-question">Add another question</button>
-        <p>Save as<button class="btn btn-collapse-lg" type="submit" for="save-public" id="save-public">PUBLIC</button> or <button class="btn btn-collapse-lg" type="submit" for="save-private" id="save-private">PRIVATE</button></p>
-      </footer>
-    </form>
-  </section>
-    `;
-  return $newQuestion;
-};
-
-
-const submitNewQuiz = function() {
   $.ajax({
-    url: 'http://localhost:8080/quizzes/new',
-    method: 'GET',
-    dataType: 'json',
-    success: (quizData) => {
-
-    },
-    error: (err) => {
-      console.error(err);
+   type: "POST",
+   url: "/api/quizzes/questions",
+   data: data,
+   success: function(result) {
+     console.log(result);
+   }
+ }).then(
+   $.ajax({
+    type: "POST",
+    url: "/api/quizzes/private",
+    data: data,
+    success: function(result) {
+      console.log(result);
     }
-  })
+   })
+ )
+
+ $("#new-question-form").trigger('reset')
+
+
+
 }
+
+// const submitNewQuiz = function() {
+//   $.ajax({
+//     url: 'http://localhost:8080/quizzes/new',
+//     method: 'GET',
+//     dataType: 'json',
+//     success: (quizData) => {
+
+//     },
+//     error: (err) => {
+//       console.error(err);
+//     }
+//   })
+// }
 
 

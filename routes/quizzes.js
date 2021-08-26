@@ -44,10 +44,10 @@ module.exports = (db) => {
     let query = `
     INSERT INTO quizzes (title)
     VALUES ($1)
-    RETURNING *
+    RETURNING *;
     `;
     console.log("this is query and params", query, params);
-    db.query(query, [params])
+    db.query(query, params)
       .then((data) => {
         const quizId = data.rows[0].id;
         res.json({
@@ -75,10 +75,46 @@ module.exports = (db) => {
     let query = `
       INSERT INTO questions (quiz_id, question, option_a, option_b, option_c, option_d, correct_answer)
       VALUES($1, $2, $3, $4, $5, $6, $7)
-      RETURNING *
+      RETURNING *;
       `;
     console.log("query:", query, params);
     db.query(query, params)
+      .then((data) => {
+      console.log("data rows", data.rows);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json({ error: err.message });
+      });
+  });
+
+  router.post("/public", (req, res) => {
+    console.log('getting inside public post route');
+    console.log('req', req.body)
+    let query = `
+      UPDATE quizzes
+      SET is_public = true, url = '/quizzes/${req.body.quizId}'
+      WHERE id = ${req.body.quizId};
+      `;
+    db.query(query)
+      .then((data) => {
+        console.log("data rows", data.rows);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json({ error: err.message });
+      });
+  });
+
+  router.post("/private", (req, res) => {
+    console.log('getting inside public post route');
+    console.log('req', req.body)
+    let query = `
+      UPDATE quizzes
+      SET is_public = false, url = "/quizzes/:${req.body.quizId}"
+      WHERE id = ${req.body.quizId};
+      `;
+    db.query(query)
       .then((data) => {
         console.log("data rows", data.rows);
       })
