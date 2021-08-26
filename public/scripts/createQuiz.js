@@ -124,7 +124,7 @@ const onSavePublic = function(event) {
   }).then(
     $.ajax({
       type: "POST",
-      url: "/api/quizzes/create-public",
+      url: "/api/quizzes/public",
       data: data,
       success: function(result) {
         console.log(result);
@@ -170,7 +170,7 @@ const onSavePrivate = function(event) {
   }).then(
     $.ajax({
       type: "POST",
-      url: "/api/quizzes/create-private",
+      url: "/api/quizzes/private",
       data: data,
       success: function(result) {
         console.log(result);

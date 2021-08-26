@@ -41,10 +41,16 @@ module.exports = (db) => {
   //new quiz
   router.post("/title", (req, res) => {
     let randURL = "/quizzes/" + generateRandomString();
-    let params = [req.cookies.user_id, req.body["quiz-title-text"], randURL];
+    let params = [
+      req.cookies.user_id,
+      req.body["quiz-title-text"],
+      randURL,
+      "false",
+      "now()",
+    ];
     let query = `
-    INSERT INTO quizzes (creator_id, title, url)
-    VALUES ($1, $2, $3)
+    INSERT INTO quizzes (creator_id, title, url, is_public, date_created)
+    VALUES ($1, $2, $3, $4, $5)
     RETURNING *;
     `;
     console.log("this is query and params", query, params);
@@ -95,9 +101,9 @@ module.exports = (db) => {
     let query = `
       UPDATE quizzes
       SET is_public = true
-      WHERE id = ${req.body.quizId};
+      WHERE id = $1;
       `;
-    db.query(query)
+    db.query(query, [req.body.quizId])
       .then((data) => {
         console.log("data rows", data.rows);
       })
@@ -110,14 +116,13 @@ module.exports = (db) => {
   router.post("/private", (req, res) => {
     console.log("getting inside public post route");
     console.log("req", req.body);
-    let randURL = generateRandomString();
-    console.log(randURL);
     let query = `
       UPDATE quizzes
       SET is_public = false
-      WHERE id = ${req.body.quizId};
+      SET date_created = NOW()
+      WHERE id = $1;
       `;
-    db.query(query)
+    db.query(query, [req.body.quizId])
       .then((data) => {
         console.log("data rows", data.rows);
       })
