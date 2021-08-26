@@ -43,7 +43,7 @@ const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
 const quizzesRoutes = require("./routes/quizzes");
 const homepageRoutes = require("./routes/homepage");
-const loginRoutes = require("./routes/login");
+const loginRoutes = require("./routes/loginSys");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -66,8 +66,12 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.get("/login/:id", (req, res) => {
-  res.cookie("user_id", req.params.id).redirect("/");
+// app.get("/login/:id", (req, res) => {
+//   res.cookie("user_id", req.params.id).redirect("/");
+// });
+
+app.get("/login", (req, res) => {
+  res.render("login");
 });
 
 app.get("/quizzes", (req, res) => {
