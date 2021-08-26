@@ -1,5 +1,16 @@
 .list-of-users-quizzes {
+  /* display: flex;
+  flex-direction: column;
+  border: 5px solid slateblue; */
   display: flex;
   flex-direction: column;
-  border: 5px solid slateblue;
+  background-color: var(--basic-color);
+  border: 5px solid var(--basic-color);
+  border-radius: 10px;
+  justify-content: center;
+  margin: 5em;
+  height: 30vh;
+  font-family: "Hind Siliguri", sans-serif;
+  color: var(--basic-text-color);
+  font-size: 20px;
 }

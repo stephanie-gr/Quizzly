@@ -6,7 +6,7 @@ $(() => {
     }
     const stringQuizChildren = quizChildren.join("");
 
-    $(".quiz-container").append(stringQuizChildren);
+    $(".list-of-users-quizzes").append(stringQuizChildren);
 
     const quizID = $(".quiz-element").data("quizid");
 
