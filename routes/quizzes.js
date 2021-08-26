@@ -97,7 +97,7 @@ module.exports = (db) => {
 
   router.post("/public", (req, res) => {
     console.log("getting inside public post route");
-    console.log("req", req.body);
+    console.log("req", req.body.quizId);
     let query = `
       UPDATE quizzes
       SET is_public = true
@@ -105,7 +105,7 @@ module.exports = (db) => {
       `;
     db.query(query, [req.body.quizId])
       .then((data) => {
-        console.log("data rows", data.rows);
+        res.redirect("/");
       })
       .catch((err) => {
         console.log(err);
@@ -115,16 +115,15 @@ module.exports = (db) => {
 
   router.post("/private", (req, res) => {
     console.log("getting inside public post route");
-    console.log("req", req.body);
+    console.log("req", req.body.quizId);
     let query = `
       UPDATE quizzes
       SET is_public = false
-      SET date_created = NOW()
       WHERE id = $1;
       `;
     db.query(query, [req.body.quizId])
       .then((data) => {
-        console.log("data rows", data.rows);
+        res.redirect("/");
       })
       .catch((err) => {
         console.log(err);
