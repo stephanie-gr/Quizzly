@@ -52,7 +52,7 @@ const onTitleSubmit = function(event) {
   const $questionForm = $(".question-and-answers");
 
   return $questionForm.slideDown();
-}
+};
 
 const onAddAnotherQuestionSubmit = function(event) {
   event.preventDefault();
@@ -88,7 +88,7 @@ const onAddAnotherQuestionSubmit = function(event) {
 
   $("#new-question-form").trigger('reset')
 
-}
+};
 
 const onSavePublic = function(event) {
   event.preventDefault();
@@ -135,7 +135,7 @@ const onSavePublic = function(event) {
 
  return $(".url-for-user-quiz").slideDown();
 
-}
+};
 
 const onSavePrivate = function(event) {
   event.preventDefault();
@@ -178,24 +178,11 @@ const onSavePrivate = function(event) {
    })
  )
 
- $("#new-question-form").trigger('reset')
+ $(".question-and-answers").slideUp();
 
+ return $(".url-for-user-quiz").slideDown();
 
+};
 
-}
-
-// const submitNewQuiz = function() {
-//   $.ajax({
-//     url: 'http://localhost:8080/quizzes/new',
-//     method: 'GET',
-//     dataType: 'json',
-//     success: (quizData) => {
-
-//     },
-//     error: (err) => {
-//       console.error(err);
-//     }
-//   })
-// }
 
 
