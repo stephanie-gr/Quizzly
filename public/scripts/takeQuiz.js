@@ -1,6 +1,6 @@
 let index = 0;
 $(() => {
-  const quizId = $("#current-quiz").data("quizid");
+  const quizId = $("#current-quiz").data("quizurl");
   $.get(`/api/quizzes/${quizId}`).then((quiz) => {
     const quizChildren = [];
     for (const question of quiz.quiz) {
@@ -71,7 +71,6 @@ const randomizeOrder = (question) => {
 
     $option.push(string);
   }
-  console.log($option);
   return $option.join("");
 };
 

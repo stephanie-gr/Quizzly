@@ -24,13 +24,13 @@ module.exports = (db) => {
     FROM quizzes
     JOIN questions
     ON quizzes.id = questions.quiz_id
-    WHERE url = $1;
+    WHERE url = $1
     `;
     const params = "/quizzes/" + req.params.quiz_url;
 
+    console.log(params);
     db.query(query, [params])
       .then((data) => {
-        console.log(data.rows);
         const quiz = data.rows;
         res.json({ quiz });
       })
@@ -102,11 +102,11 @@ module.exports = (db) => {
     let query = `
       UPDATE quizzes
       SET is_public = true
-      WHERE id = $1;
+      WHERE url = $1;
       `;
     db.query(query, [req.body.quizId])
-      .then((data) => {
-        res.redirect("/");
+      .then(() => {
+        res.status(200).end();
       })
       .catch((err) => {
         console.log(err);
@@ -120,11 +120,11 @@ module.exports = (db) => {
     let query = `
       UPDATE quizzes
       SET is_public = false
-      WHERE id = $1;
+      WHERE url = $1;
       `;
     db.query(query, [req.body.quizId])
-      .then((data) => {
-        res.redirect("/");
+      .then(() => {
+        res.status(200).end();
       })
       .catch((err) => {
         console.log(err);
@@ -148,56 +148,42 @@ module.exports = (db) => {
       });
   });
 
-  router.post("/:quiz_id/results", (req, res) => {
+  router.post("/:quiz_url/results", (req, res) => {
     const answers = req.body.answers;
     let matched = 0;
     let query = `
     SELECT correct_answer FROM questions
-    JOIN quizzes ON quizzes.id = $1
-    WHERE quiz_id = $1;
+    JOIN quizzes ON quizzes.id = questions.quiz_id
+    WHERE quizzes.url = $1;
     `;
-    db.query(query, [req.params.quiz_id]).then((correctAnswers) => {
-      for (let i = 0; i < correctAnswers.rows.length; i++) {
-        if (correctAnswers.rows[i].correct_answer === answers[i]) {
-          matched++;
+    db.query(query, ["/quizzes/" + req.params.quiz_url]).then(
+      (correctAnswers) => {
+        for (let i = 0; i < correctAnswers.rows.length; i++) {
+          if (correctAnswers.rows[i].correct_answer === answers[i]) {
+            matched++;
+          }
         }
+        const results = {
+          matched: matched,
+          numAnswers: correctAnswers.rows.length,
+          quizURL: req.params.quiz_url,
+        };
+        console.log("asdf", results);
+        res.json(results);
       }
-      const results = {
-        matched: matched,
-        numAnswers: correctAnswers.rows.length,
-        quizID: req.params.quiz_id,
-      };
-      res.json(results);
-    });
-  });
-
-  //edit quiz
-  //TODO: create toggle button on my_quizzes page for this route
-  router.put("/:quiz_id/edit", (req, res) => {
-    let query = `
-    UPDATE quizzes
-    SET is_public = ... //toggle-button state
-    WHERE quizzes.id = $1;
-    `;
-    // console.log(query);
-    db.query(query, [req.params.quiz_id])
-      .then(() => {
-        res.redirect("/quizzes");
-      })
-      .catch((err) => {
-        res.status(500).json({ error: err.message });
-      });
+    );
   });
 
   //delete quiz
   //TODO: add a delete button on my_quizzes pages for this route
-  router.put("/:quiz_id/delete", (req, res) => {
+  router.post("/:quiz_id/delete", (req, res) => {
+    // console.log();
     let query = `
     DELETE FROM quizzes
-    WHERE quiz_id = $1;
+    WHERE url = $1;
     `;
-    // console.log(query);
-    db.query(query, [req.params.quiz_id])
+    console.log("query:", req.params.quiz_id);
+    db.query(query, ["/quizzes/" + req.params.quiz_id])
       .then(() => {
         res.redirect("/quizzes");
       })
