@@ -80,7 +80,7 @@ module.exports = (db) => {
     console.log("query:", query, params);
     db.query(query, params)
       .then((data) => {
-      console.log("data rows", data.rows);
+        console.log("data rows", data.rows);
       })
       .catch((err) => {
         console.log(err);
@@ -88,9 +88,9 @@ module.exports = (db) => {
       });
   });
 
-  router.post("/public", (req, res) => {
-    console.log('getting inside public post route');
-    console.log('req', req.body)
+  router.post("/create-public", (req, res) => {
+    console.log("getting inside public post route");
+    console.log("req", req.body);
     let query = `
       UPDATE quizzes
       SET is_public = true, url = '/quizzes/${req.body.quizId}'
@@ -106,9 +106,9 @@ module.exports = (db) => {
       });
   });
 
-  router.post("/private", (req, res) => {
-    console.log('getting inside public post route');
-    console.log('req', req.body)
+  router.post("/create-private", (req, res) => {
+    console.log("getting inside public post route");
+    console.log("req", req.body);
     let query = `
       UPDATE quizzes
       SET is_public = false, url = "/quizzes/:${req.body.quizId}"

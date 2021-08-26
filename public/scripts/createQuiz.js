@@ -1,28 +1,30 @@
-$(() =>  {
-
+$(() => {
   //grab the form and save it to jquery obj
   const $titleForm = $(".quiz-title");
 
   //add event handler for $titleForm, pass it callback
-  $titleForm.on('submit', onTitleSubmit);
+  $titleForm.on("submit", onTitleSubmit);
 
   //grab question form as jquery obj
-  const $questionForm =$('#new-question-form');
+  const $questionForm = $("#new-question-form");
 
   //questionForm has to listen for three event possibilities: the user uses the button to add a question, save the quiz as public, and save the quiz as private, respectively
-  $questionForm.on('click', '#add-another-question', onAddAnotherQuestionSubmit);
+  $questionForm.on(
+    "click",
+    "#add-another-question",
+    onAddAnotherQuestionSubmit
+  );
 
-  $questionForm.on('click', '#save-public', onSavePublic);
+  $questionForm.on("click", "#save-public", onSavePublic);
 
-  $questionForm.on('click', '#save-private', onSavePrivate);
-
+  $questionForm.on("click", "#save-private", onSavePrivate);
 });
 
 const onTitleSubmit = function(event) {
   event.preventDefault();
 
   //validation checks for no title input from user
-  const $noTitleErrorMsg = $('#no-title-error');
+  const $noTitleErrorMsg = $("#no-title-error");
   $noTitleErrorMsg.slideUp();
 
   const stringBeforeSerialized = $("#quiz-title-text").val();
@@ -45,7 +47,7 @@ const onTitleSubmit = function(event) {
     success: function(result) {
       console.log(result);
       $("#question-id").val(result.quiz_id);
-    }
+    },
     // success: success,
   });
 
@@ -57,44 +59,43 @@ const onTitleSubmit = function(event) {
 const onAddAnotherQuestionSubmit = function(event) {
   event.preventDefault();
 
-   //validation checks for no question input from user
-   const $noQuestionErrorMsg = $('#no-question-error');
-   $noQuestionErrorMsg.slideUp();
+  //validation checks for no question input from user
+  const $noQuestionErrorMsg = $("#no-question-error");
+  $noQuestionErrorMsg.slideUp();
 
-   const questionBeforeSerialized = $("#question-text").val();
-   if (!questionBeforeSerialized) {
-     return $noQuestionErrorMsg.slideDown();
-   }
+  const questionBeforeSerialized = $("#question-text").val();
+  if (!questionBeforeSerialized) {
+    return $noQuestionErrorMsg.slideDown();
+  }
 
-   const $noAnswerErrorMsg = $('#no-answer-error');
-   $noAnswerErrorMsg.slideUp();
+  const $noAnswerErrorMsg = $("#no-answer-error");
+  $noAnswerErrorMsg.slideUp();
 
-   //right now, this only makes the user enter ONE option. if 0 options are entered, error msg will appear.
-   const optionBeforeSerialized = $("#option-a-text").val();
-   if (!optionBeforeSerialized) {
-     return $noAnswerErrorMsg.slideDown();
-   }
+  //right now, this only makes the user enter ONE option. if 0 options are entered, error msg will appear.
+  const optionBeforeSerialized = $("#option-a-text").val();
+  if (!optionBeforeSerialized) {
+    return $noAnswerErrorMsg.slideDown();
+  }
 
-   const data = $("#new-question-form").serialize();
+  const data = $("#new-question-form").serialize();
 
-   $.ajax({
+  $.ajax({
     type: "POST",
     url: "/api/quizzes/questions",
     data: data,
     success: function(result) {
       console.log(result);
-    }
+    },
   });
 
-  $("#new-question-form").trigger('reset')
-
+  $("#new-question-form").trigger("reset");
 };
 
 const onSavePublic = function(event) {
   event.preventDefault();
 
   //validation checks for no question input from user
-  const $noQuestionErrorMsg = $('#no-question-error');
+  const $noQuestionErrorMsg = $("#no-question-error");
   $noQuestionErrorMsg.slideUp();
 
   const questionBeforeSerialized = $("#question-text").val();
@@ -102,7 +103,7 @@ const onSavePublic = function(event) {
     return $noQuestionErrorMsg.slideDown();
   }
 
-  const $noAnswerErrorMsg = $('#no-answer-error');
+  const $noAnswerErrorMsg = $("#no-answer-error");
   $noAnswerErrorMsg.slideUp();
 
   //right now, this only makes the user enter ONE option. if 0 options are entered, error msg will appear.
@@ -114,34 +115,33 @@ const onSavePublic = function(event) {
   const data = $("#new-question-form").serialize();
 
   $.ajax({
-   type: "POST",
-   url: "/api/quizzes/questions",
-   data: data,
-   success: function(result) {
-     console.log(result);
-   }
- }).then(
-   $.ajax({
     type: "POST",
-    url: "/api/quizzes/public",
+    url: "/api/quizzes/questions",
     data: data,
     success: function(result) {
       console.log(result);
-    }
-   })
- )
+    },
+  }).then(
+    $.ajax({
+      type: "POST",
+      url: "/api/quizzes/create-public",
+      data: data,
+      success: function(result) {
+        console.log(result);
+      },
+    })
+  );
 
- $(".question-and-answers").slideUp();
+  $(".question-and-answers").slideUp();
 
- return $(".url-for-user-quiz").slideDown();
-
+  return $(".url-for-user-quiz").slideDown();
 };
 
 const onSavePrivate = function(event) {
   event.preventDefault();
 
   //validation checks for no question input from user
-  const $noQuestionErrorMsg = $('#no-question-error');
+  const $noQuestionErrorMsg = $("#no-question-error");
   $noQuestionErrorMsg.slideUp();
 
   const questionBeforeSerialized = $("#question-text").val();
@@ -149,7 +149,7 @@ const onSavePrivate = function(event) {
     return $noQuestionErrorMsg.slideDown();
   }
 
-  const $noAnswerErrorMsg = $('#no-answer-error');
+  const $noAnswerErrorMsg = $("#no-answer-error");
   $noAnswerErrorMsg.slideUp();
 
   //right now, this only makes the user enter ONE option. if 0 options are entered, error msg will appear.
@@ -161,28 +161,24 @@ const onSavePrivate = function(event) {
   const data = $("#new-question-form").serialize();
 
   $.ajax({
-   type: "POST",
-   url: "/api/quizzes/questions",
-   data: data,
-   success: function(result) {
-     console.log(result);
-   }
- }).then(
-   $.ajax({
     type: "POST",
-    url: "/api/quizzes/private",
+    url: "/api/quizzes/questions",
     data: data,
     success: function(result) {
       console.log(result);
-    }
-   })
- )
+    },
+  }).then(
+    $.ajax({
+      type: "POST",
+      url: "/api/quizzes/create-private",
+      data: data,
+      success: function(result) {
+        console.log(result);
+      },
+    })
+  );
 
- $(".question-and-answers").slideUp();
+  $(".question-and-answers").slideUp();
 
- return $(".url-for-user-quiz").slideDown();
-
+  return $(".url-for-user-quiz").slideDown();
 };
-
-
-
