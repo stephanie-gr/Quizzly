@@ -119,7 +119,6 @@ module.exports = (db) => {
     let query = `
       UPDATE quizzes
       SET is_public = false
-      SET date_created = NOW()
       WHERE id = $1;
       `;
     db.query(query, [req.body.quizId])
