@@ -1,5 +1,26 @@
-.list-of-users-quizzes {
+main .container {
   display: flex;
   flex-direction: column;
-  border: 5px solid slateblue;
+  margin-top: 30vh;
+  height: 100vh;
+  color: var(--basic-text-color);
+}
+
+.quiz-element {
+  /* display: flex;
+  flex-direction: column;
+  border: 5px solid slateblue; */
+  display: flex;
+  flex-direction: column;
+  background-color: var(--basic-color);
+  border: 5px solid var(--basic-color);
+  border-radius: 10px;
+  justify-content: center;
+  margin: 2em;
+  height: 25vh;
+  font-family: "Hind Siliguri", sans-serif;
+  color: var(--basic-text-color);
+  font-size: 20px;
+  padding-left: 1em;
+  padding-right: 1em;
 }

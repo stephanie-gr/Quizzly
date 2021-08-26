@@ -6,7 +6,8 @@ $(() => {
 const onQuizAttemptSubmit = function(event) {
   event.preventDefault();
 
-  const quizId = $("#current-quiz").data("quizid");
+  const quizURL = $("#current-quiz").data("quizurl");
+  console.log(quizURL);
 
   const answers = [];
 
@@ -18,10 +19,10 @@ const onQuizAttemptSubmit = function(event) {
 
   $.ajax({
     type: "POST",
-    url: `/api/quizzes/${quizId}/results`,
+    url: `/api/quizzes/${quizURL}/results`,
     data: { answers },
     success: function(result) {
-      location.href = `/quizzes/${result.quizID}/results?matched=${result.matched}&numAnswers=${result.numAnswers}`;
+      window.location.href = `/quizzes/${result.quizURL}/results?matched=${result.matched}&numAnswers=${result.numAnswers}`;
     },
   });
 };

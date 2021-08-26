@@ -3,7 +3,7 @@
   --basic-text-color: navy;
 }
 
-main .container{
+main .container {
   display: flex;
   flex-direction: column;
   margin-top: 30vh;
@@ -20,7 +20,7 @@ main .container{
   justify-content: center;
   margin: 5em;
   height: 30vh;
-  font-family: 'Hind Siliguri', sans-serif;
+  font-family: "Hind Siliguri", sans-serif;
   color: var(--basic-text-color);
   font-size: 20px;
 }

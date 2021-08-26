@@ -91,11 +91,13 @@ app.get("/quizzes/:quiz_id/results", (req, res) => {
   res.render("results", templateVars);
 });
 
-app.get("/quizzes/:quiz_id", (req, res) => {
+app.get("/quizzes/:quiz_url", (req, res) => {
+  console.log("quizURL:", req.params.quiz_url);
   const templateVars = {
-    quizID: req.params.quiz_id,
+    quizurl: req.params.quiz_url,
     user: req.cookies.user_id,
   };
+  console.log("tempvar:", templateVars);
   res.render("take_quiz", templateVars);
 });
 
