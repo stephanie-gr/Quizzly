@@ -40,10 +40,11 @@ module.exports = (db) => {
 
   //new quiz
   router.post("/title", (req, res) => {
-    let params = [req.body["quiz-title-text"]];
+    let randURL = "/quizzes/" + generateRandomString();
+    let params = [req.cookies.user_id, req.body["quiz-title-text"], randURL];
     let query = `
-    INSERT INTO quizzes (title)
-    VALUES ($1)
+    INSERT INTO quizzes (creator_id, title, url)
+    VALUES ($1, $2, $3)
     RETURNING *;
     `;
     console.log("this is query and params", query, params);
@@ -88,12 +89,12 @@ module.exports = (db) => {
       });
   });
 
-  router.post("/create-public", (req, res) => {
+  router.post("/public", (req, res) => {
     console.log("getting inside public post route");
     console.log("req", req.body);
     let query = `
       UPDATE quizzes
-      SET is_public = true, url = '/quizzes/${req.body.quizId}'
+      SET is_public = true
       WHERE id = ${req.body.quizId};
       `;
     db.query(query)
@@ -106,12 +107,14 @@ module.exports = (db) => {
       });
   });
 
-  router.post("/create-private", (req, res) => {
+  router.post("/private", (req, res) => {
     console.log("getting inside public post route");
     console.log("req", req.body);
+    let randURL = generateRandomString();
+    console.log(randURL);
     let query = `
       UPDATE quizzes
-      SET is_public = false, url = "/quizzes/:${req.body.quizId}"
+      SET is_public = false
       WHERE id = ${req.body.quizId};
       `;
     db.query(query)
@@ -199,4 +202,14 @@ module.exports = (db) => {
   });
 
   return router;
+};
+
+const generateRandomString = () => {
+  let result = "";
+  let characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  for (let i = 0; i < 6; i++) {
+    result += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return result;
 };

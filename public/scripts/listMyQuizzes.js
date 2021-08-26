@@ -15,6 +15,7 @@ $(() => {
       <div class="info">
         <div class="icon icon-type" title="Project"></div>
         <div class="name">${quiz.title}&nbsp;</div>
+        <p>${quiz.url}<p>
       </div>
     </a>
     `;
