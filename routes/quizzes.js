@@ -114,6 +114,24 @@ module.exports = (db) => {
       });
   });
 
+  router.get("/public", (req, res) => {
+    console.log("getting inside public get route");
+    console.log("req", req.body.quizId);
+    let query = `
+      SELECT url
+      FROM quizzes
+      WHERE id = req.body.quiz_id
+      `;
+    db.query(query, [req.body.quizId])
+      .then((data) => {
+        res.redirect("/public");
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json({ error: err.message });
+      });
+  });
+
   router.post("/private", (req, res) => {
     console.log("getting inside public post route");
     console.log("req", req.body.quizId);

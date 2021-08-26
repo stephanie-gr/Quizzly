@@ -9,11 +9,7 @@ $(() => {
   const $questionForm = $("#new-question-form");
 
   //questionForm has to listen for three event possibilities: the user uses the button to add a question, save the quiz as public, and save the quiz as private, respectively
-  $questionForm.on(
-    "click",
-    "#add-another-question",
-    onAddAnotherQuestionSubmit
-  );
+  $questionForm.on("click", "#add-another-question", onAddAnotherQuestionSubmit);
 
   $questionForm.on("click", "#save-public", onSavePublic);
 
@@ -182,3 +178,4 @@ const onSavePrivate = function(event) {
 
   return $(".url-for-user-quiz").slideDown();
 };
+
