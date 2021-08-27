@@ -8,7 +8,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <% if(!user) { %>
-      <a class="nav-item nav-link" href="/login">Login</a>
+      <a class="nav-item nav-link btn btn-dark" href="/login">Login</a>
       <% } else { %>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
@@ -17,7 +17,7 @@
           </div>
         </div>
       <form id="logout">
-        <button type="submit" class="btn btn-outline-dark">Logout</button>
+        <button type="submit" class="btn btn-dark">Logout</button>
       </form>
       <% } %>
   </nav>
