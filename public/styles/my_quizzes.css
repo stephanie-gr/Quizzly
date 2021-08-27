@@ -7,9 +7,6 @@ main .container {
 }
 
 .quiz-element {
-  /* display: flex;
-  flex-direction: column;
-  border: 5px solid slateblue; */
   display: flex;
   flex-direction: column;
   background-color: var(--basic-color);
